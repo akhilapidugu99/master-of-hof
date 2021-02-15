@@ -33,14 +33,16 @@ renderItems = () => {
 
     render() {
         // instead of a parent div tag we can also use React.Fragment
+        return(
         <React.Fragment>
         <h1>Display all items</h1>
         <div className="display-box">
         <ul>{this.renderItems()} </ul>
         </div>
-      </React.Fragment>
+      </React.Fragment>);
     }
 }
+
 
 
 export default HigherOrderComponent;
