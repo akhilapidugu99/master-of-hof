@@ -31,14 +31,95 @@ renderItems = () => {
     return mapRows;
 };
 
+displayUserType = () => {
+    const data = this.state.userData
+    const allitems = data.filter(item => {
+        if (item.user_type === "Designer")
+            return true;
+    }).map(item => {
+        return (
+            <div key={item.id} className="list-elements">
+                <span>ID: {item.id}</span>
+                <span>Name: {item.name}</span>
+                <span>User Type: {item.user_type}</span>
+            </div>
+        );
+    }
+    );
+
+    return allitems;
+}
+
+        displayStartingLetter = () => {
+    const data = this.state.userData
+    const allitems = data.filter(item => {
+        if (item.name[0] === "J")
+            return true;
+    }).map(item => {
+        return (
+            <div key={item.id} className="list-elements">
+                <span>ID: {item.id}</span>
+                <span>Name: {item.name}</span>
+                <span>User Type: {item.user_type}</span>
+            </div>
+        );
+    });
+    return allitems;
+}
+displayAge = () => {
+    const data = this.state.userData
+    const allitems = data.filter(item => {
+        if (item.age > 28 && item.age < 50)
+            return true;
+    }).map(item => {
+        return (
+            <div key={item.id} className="list-elements">
+                <span>ID: {item.id}</span>
+                <span>Name: {item.name}</span>
+                <span>User Type: {item.user_type}</span>
+            </div>
+        );
+    });
+
+    return allitems;
+}
+displayDesignersYears = () => {
+
+    const data = this.state.userData
+    const sum = data.filter(item => {
+        if (item.user_type === "Designer")
+            return true;
+    }).reduce((initial, item) => initial += item.years, 0);
+
+    return sum;
+}
+
+
     render() {
         // instead of a parent div tag we can also use React.Fragment
         return(
         <React.Fragment>
         <h1>Display all items</h1>
         <div className="display-box">
-        <ul>{this.renderItems()} </ul>
+        <p>{this.renderItems()} </p>
         </div>
+        <h1>Display based on usertype</h1>
+                <div className="display-box">
+                    <p>{this.displayUserType()} </p>
+                </div>
+
+        <h1>Filter all data starting with J</h1>
+                <div className="display-box">
+                    <p>{this.displayStartingLetter()} </p>
+                </div>
+        < h1>Filter all data based on age greaterthan 28 and age lessthan or equal to 50  </h1>
+                <div className="display-box">
+                    <p>{this.displayAge()} </p>
+                </div>
+        <h1>Find the total years of designers </h1>
+                <div className="display-box">
+                    <p>{this.displayDesignersYears()} </p>
+                </div>
       </React.Fragment>);
     }
 }
